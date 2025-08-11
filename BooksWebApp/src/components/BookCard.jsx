@@ -1,14 +1,17 @@
 import '../styles/bookCard.css';
-import { useState } from 'react';
 
-function BookCard(){
-    return(
+function BookCard({ bookTitle, coverUrl }) {
+    return (
         <div className='card-container'>
-            <img alt='Book cover'></img>
-            <p>Book title</p>
+            {coverUrl ? (
+                <img src={coverUrl} alt={`${bookTitle} cover`} />
+            ) : (
+                <div className='no-cover'>No cover</div>
+            )}
+            <p>{bookTitle}</p>
             <div className='book-status'>
                 <div className='book-reading-status'>
-                    <label>Select reading status:</label>
+                    <label>Status:</label>
                     <select>
                         <option>Read</option>
                         <option>Reading</option>
@@ -27,7 +30,7 @@ function BookCard(){
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
 export default BookCard;
