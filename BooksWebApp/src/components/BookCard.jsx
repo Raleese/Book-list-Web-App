@@ -1,6 +1,11 @@
 import '../styles/bookCard.css';
 
 function BookCard({ bookTitle, coverUrl }) {
+
+    async function favoriteButton(){
+
+    }
+
     return (
         <div className='card-container'>
             {coverUrl ? (
@@ -8,7 +13,9 @@ function BookCard({ bookTitle, coverUrl }) {
             ) : (
                 <div className='no-cover'>No cover</div>
             )}
-            <p>{bookTitle}</p>
+            <p className='book-title'>{bookTitle}</p>
+            <button className='favorite-button' onClick={favoriteButton}>Favorite</button>
+            {/*
             <div className='book-status'>
                 <div className='book-reading-status'>
                     <label>Status:</label>
@@ -29,6 +36,7 @@ function BookCard({ bookTitle, coverUrl }) {
                     </select>
                 </div>
             </div>
+            */}
         </div>
     );
 }
