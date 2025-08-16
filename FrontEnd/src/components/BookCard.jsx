@@ -1,9 +1,17 @@
 import '../styles/bookCard.css';
+import { addFavorite } from '../api/calls';
 
 function BookCard({ bookTitle, coverUrl }) {
 
-    async function favoriteButton(){
+    const rating = 1;
+    const status = 1;
 
+    async function favoriteButton(){
+        try{
+            await addFavorite ({bookTitle, coverUrl, rating, status});
+        }catch(error){
+            console.error(error);
+        }
     }
 
     return (
