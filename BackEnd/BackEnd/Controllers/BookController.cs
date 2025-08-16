@@ -28,7 +28,7 @@ namespace BackEnd.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, ex.Message); // <-- shows the exact DB error
+                return StatusCode(500, ex.Message);
             }
         }
 

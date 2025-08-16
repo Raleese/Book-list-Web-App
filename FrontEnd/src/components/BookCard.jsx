@@ -7,11 +7,7 @@ function BookCard({ bookTitle, coverUrl }) {
     const status = 1;
 
     async function favoriteButton(){
-        try{
-            await addFavorite ({bookTitle, coverUrl, rating, status});
-        }catch(error){
-            console.error(error);
-        }
+        await addFavorite ({bookTitle, coverUrl, rating, status});
     }
 
     return (
