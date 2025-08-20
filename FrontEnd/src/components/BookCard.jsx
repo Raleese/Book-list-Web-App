@@ -1,18 +1,18 @@
 import '../styles/bookCard.css';
-import { addFavorite } from '../api/calls';
-import { getFavorites } from '../api/calls';
+import { addFavorite, getFavorites, removeFavorite } from '../api/calls';
 import { useState, useEffect } from 'react';
 
-function BookCard({ bookTitle, coverUrl }) {
+function BookCard({bookId, bookTitle, coverUrl }) {
 
     const [favorite, setFavorite] = useState(false);
+    const [removeText, setRemoveText] = useState('Remove');
 
     const rating = 1;
     const status = 1;
 
     useEffect(() => {
         fetchFavorites();
-    }, [bookTitle]); // re-check when book changes
+    }, []);
     
     async function fetchFavorites() {
         try{
@@ -31,39 +31,48 @@ function BookCard({ bookTitle, coverUrl }) {
         setFavorite(true);
     }
 
+    async function removeButton() {
+        await removeFavorite (bookId);
+        setRemoveText('Removed successfully');
+    }
+
     return (
         <div className='card-container'>
+            <div className='book-title'>{bookTitle}</div>
             {coverUrl ? (
                 <img src={coverUrl} alt={`${bookTitle} cover`} />
             ) : (
                 <div className='no-cover'>No cover</div>
             )}
-            <p className='book-title'>{bookTitle}</p>
             {favorite === false ? (
                 <button className='favorite-button' onClick={favoriteButton}>Favorite</button>
             ) : (
                 <div className='book-status'>
-                    <div className='book-reading-status'>
-                        <label>Status:</label>
-                        <select>
-                            <option>-</option>
-                            <option>Read</option>
-                            <option>Reading</option>
-                            <option>Will read</option>
-                        </select>
+                    <div className='upper-part'>
+                        <div className='book-reading-status'>
+                            <label>Status:</label>
+                            <select>
+                                <option>-</option>
+                                <option>Read</option>
+                                <option>Reading</option>
+                                <option>Will read</option>
+                            </select>
+                        </div>
+                        <div className='book-rating'>
+                            <label>Rating:</label>
+                            <select>
+                                <option>-</option>
+                                <option>⭐</option>
+                                <option>⭐⭐</option>
+                                <option>⭐⭐⭐</option>
+                                <option>⭐⭐⭐⭐</option>
+                                <option>⭐⭐⭐⭐⭐</option>
+                            </select>
+                        </div>
                     </div>
-                    <div className='book-rating'>
-                        <label>Rating:</label>
-                        <select>
-                            <option>-</option>
-                            <option>⭐</option>
-                            <option>⭐⭐</option>
-                            <option>⭐⭐⭐</option>
-                            <option>⭐⭐⭐⭐</option>
-                            <option>⭐⭐⭐⭐⭐</option>
-                        </select>
+                    <div className='lower-part'>
+                        <button className='remove-button' onClick={removeButton}>{removeText}</button>
                     </div>
-                    <button className='remove-button' >Remove</button>
                 </div>
             )}
         </div>

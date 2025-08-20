@@ -22,3 +22,9 @@ export async function getFavorites() {
     });
     return response.json();
 }
+
+export async function removeFavorite(id) {
+    const response = await fetch(`http://localhost:5092/api/book/${id}`, {
+        method: 'DELETE'
+    })
+}

@@ -6,7 +6,6 @@ import BookCard from '../components/BookCard';
 function Home() {
     const [results, setResults] = useState([]);
     const [query, setQuery] = useState('');
-    const [error, setError] = useState('');
 
     async function submitForm(event) {
         event.preventDefault();
@@ -14,7 +13,6 @@ function Home() {
 
         try{
             const data = await searchBooks(query);
-            // Extract titles if docs array exists
             if (Array.isArray(data.docs)) {
                 setResults(
                     data.docs.map(book => ({
@@ -29,7 +27,7 @@ function Home() {
             }
         }
         catch (error){
-            setError(error);
+            return;
         }
     }
 

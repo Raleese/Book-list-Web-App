@@ -1,5 +1,6 @@
 using BackEnd.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace BackEnd.Controllers
 {
@@ -32,6 +33,13 @@ namespace BackEnd.Controllers
             }
         }
 
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Book>>> GetBooks()
+        {
+            var books = await _context.favorites.ToListAsync();
+            return Ok(books);
+        }
+
         [HttpGet("{id}")]
         public async Task<ActionResult<Book>> GetBook(int id)
         {
@@ -43,6 +51,28 @@ namespace BackEnd.Controllers
             }
 
             return book;
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteBook(int id)
+        {
+            try
+            {
+                var book = await _context.favorites.FindAsync(id);
+
+                if (book == null)
+                {
+                    return NotFound();
+                }
+
+                _context.favorites.Remove(book);
+                await _context.SaveChangesAsync();
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
     }
 }

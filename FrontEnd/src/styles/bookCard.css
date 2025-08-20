@@ -10,19 +10,36 @@
     align-items: center;
 }
 .book-title{
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    text-align: center;
-    width: 90%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+.book-title:hover{
+    text-overflow: unset;
+    overflow: unset;
+    z-index: 100;
 }
 .card-container:hover{
     transform: scale(1.05);    
 }
 .book-status{
     display: flex;
-    align-items: end;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
+}
+.upper-part{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.lower-part{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .book-reading-status{
     display: flex;

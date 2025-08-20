@@ -15,6 +15,7 @@ function Favorites() {
 
             setResults(
                 data.map(book => ({
+                    id: book.id,
                     title: book.title,
                     coverUrl: book.coverUrl
                 }))
@@ -31,6 +32,7 @@ function Favorites() {
             {results.map((book, index) => (
                 <BookCard
                     key={index}
+                    bookId={book.id}
                     bookTitle={book.title}
                     coverUrl={book.coverUrl}
                />
