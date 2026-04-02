@@ -109,7 +109,8 @@ Example `POST` body:
 }
 ```
 
-## Notes
+## Images
 
-- Frontend API calls currently target `http://localhost:5092`, so keep backend running on that port during development.
-- CORS in backend is configured to allow `http://localhost:5173`.
+<img width="1914" height="1061" alt="image" src="https://github.com/user-attachments/assets/b08fb197-d86f-49eb-823d-2b465f69427a" />
+
+<img width="1916" height="1061" alt="image" src="https://github.com/user-attachments/assets/83d52e83-e0be-4a91-878a-acee179835fc" />
